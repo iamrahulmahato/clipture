@@ -5,10 +5,7 @@ import autoprefixer from 'autoprefixer';
 export default defineConfig({
   root: './',
   publicDir: 'public',
-  define: {
-    // Enable VITE_ env variables
-    __VITE_ENV__: JSON.stringify(process.env)
-  },
+  envPrefix: 'VITE_',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
