@@ -17,6 +17,16 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 // Initialize Firebase
+console.log('All environment variables:', import.meta.env);
+console.log('Environment variables check:', {
+    VITE_FIREBASE_API_KEY: import.meta.env.VITE_FIREBASE_API_KEY,
+    VITE_FIREBASE_AUTH_DOMAIN: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    VITE_FIREBASE_PROJECT_ID: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    VITE_FIREBASE_STORAGE_BUCKET: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    VITE_FIREBASE_MESSAGING_SENDER_ID: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    VITE_FIREBASE_APP_ID: import.meta.env.VITE_FIREBASE_APP_ID
+});
+
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
     authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -28,8 +38,8 @@ const firebaseConfig = {
 
 // Validate environment variables
 if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
-    console.error('Firebase configuration is missing. Please check your environment variables.');
-    // You can show a user-friendly error message here
+    console.error('Firebase configuration is missing. Full config:', firebaseConfig);
+    console.error('Please check that all environment variables are set correctly in Vercel');
     document.getElementById('error-message').style.display = 'block';
 }
 
