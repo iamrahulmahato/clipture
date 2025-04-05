@@ -1,13 +1,15 @@
-module.exports = {
-  content: ["./index.html", "./js/main.js"],
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
-    fontFamily: {
-      "mono": ["Space Grotesk", "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"]
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
     },
-    extend: {},
   },
-  variants: {
-    extend: {},
-  },
-  plugins: [require("@tailwindcss/forms")],
-};
+  plugins: [],
+}

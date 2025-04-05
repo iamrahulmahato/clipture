@@ -2,127 +2,56 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Clipture</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./css/style.css" />
+    <title>Clipture - Share Text Instantly</title>
+    <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/src/styles/main.css" />
   </head>
 
-  <body>
-    <div id="app" class="bg-neutral-50 min-h-screen font-sans">
-      <div class="max-w-2xl mx-auto px-4">
-        <div class="py-12">
-          <img src="./favicon.svg" alt="Clipture" class="h-12 w-12 mx-auto mb-8" />
-          <form class="mb-12">
-            <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md">
-              <div class="p-6 space-y-4">
-                <div>
-                  <label
-                    for="content"
-                    class="block text-sm font-medium text-neutral-700"
-                  >
-                    New Paste
-                  </label>
-                  <div class="mt-2">
-                    <textarea
-                      id="content"
-                      name="content"
-                      class="h-40 sm:h-48 w-full px-3 py-2 text-sm text-neutral-900 placeholder-neutral-400 border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                      placeholder="Enter your text here..."
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
-              <div class="bg-neutral-50 px-6 py-4 flex justify-end">
-                <button
-                  type="submit"
-                  class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
-                >
-                  Create a paste
-                </button>
-              </div>
-            </div>
-          </form>
+  <body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+      <div class="text-center mb-8">
+        <img src="/src/assets/favicon.svg" alt="Clipture Logo" class="h-16 mx-auto mb-4" />
+        <h1 class="text-3xl font-bold text-gray-900">Clipture</h1>
+        <p class="text-gray-600 mt-2">Share text snippets instantly</p>
+      </div>
 
-          <!-- Messages container -->
-          <div id="contents" class="space-y-4"></div>
-
-          <!-- Loading indicator -->
-          <div id="loader" class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-white bg-opacity-50 z-50 hidden">
-            <svg class="animate-spin h-8 w-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-          </div>
-
-          <div id="error-message" class="fixed top-0 left-0 w-full p-4 bg-red-100 text-red-700 text-center hidden">
-            Error: Firebase configuration is missing. Please check your environment variables.
-          </div>
-        </div>
-        <div class="text-center w-full pb-12 text-neutral-500 text-sm">
-          Made with ❤️ by
-          <a
-            href="http://rahulmahato.vercel.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-blue-600 hover:text-blue-700 transition-colors duration-200"
-            >Rahul Mahato</a
-          >
-        </div>
-
-        <div
-          id="toast-copy"
-          class="toast flex items-center p-4 space-x-4 w-full max-w-xs text-neutral-800 bg-white rounded-lg shadow-lg fixed left-1/2 bottom-12 -translate-x-1/2 translate-y-0"
-          role="alert"
+      <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+        <textarea
+          id="messageInput"
+          class="w-full h-32 p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+          placeholder="Type or paste your text here..."
+        ></textarea>
+        <button
+          id="submitBtn"
+          class="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="w-6 h-6 text-green-600"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z"
-              clip-rule="evenodd"
-            />
-          </svg>
+          Share
+        </button>
+      </div>
 
-          <div class="text-sm font-medium">
-            Content copied successfully.
-          </div>
-        </div>
-        <div
-          id="toast-delete"
-          class="toast flex items-center p-4 space-x-4 w-full max-w-xs text-neutral-800 bg-white rounded-lg shadow-lg fixed left-1/2 bottom-12 -translate-x-1/2 translate-y-0"
-          role="alert"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="w-6 h-6 text-red-600"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.256 1.478l-.209-.035-1.005 13.07a3 3 0 01-2.991 2.77H8.084a3 3 0 01-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 01-.256-1.478A48.567 48.567 0 017.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 013.369 0c1.603.051 2.815 1.387 2.815 2.951zm-6.136-1.452a51.196 51.196 0 013.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 00-6 0v-.113c0-.794.609-1.428 1.364-1.452zm-.355 5.945a.75.75 0 10-1.5.058l.347 9a.75.75 0 101.499-.058l-.346-9zm5.48.058a.75.75 0 10-1.498-.058l-.347 9a.75.75 0 001.5.058l.345-9z"
-              clip-rule="evenodd"
-            />
-          </svg>
+      <div id="messages" class="space-y-4">
+        <!-- Messages will be inserted here -->
+      </div>
 
-          <div class="text-sm font-medium">
-            Content deleted successfully.
-          </div>
-        </div>
+      <div id="loader" class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-white bg-opacity-50 z-50 hidden">
+        <svg class="animate-spin h-8 w-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+      </div>
+
+      <div id="error-message" class="fixed top-0 left-0 w-full p-4 bg-red-100 text-red-700 text-center hidden">
+        Error: Firebase configuration is missing. Please check your environment variables.
       </div>
     </div>
-    <script type="module" src="./js/main.js"></script>
+
+    <footer class="text-center w-full pb-12 text-neutral-500 text-sm">
+      Made with ❤️ by <a href="https://rahulmahato.vercel.app" target="_blank" class="text-blue-600 hover:text-blue-700">Rahul Mahato</a>
+    </footer>
+
+    <script type="module" src="/src/utils/firebase.js"></script>
   </body>
 </html>
