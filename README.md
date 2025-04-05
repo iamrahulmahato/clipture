@@ -1,7 +1,7 @@
 # Clipture
 
 <div align="center">
-  <img alt="Clipture" height="80" src="./favicon.svg">
+  <img alt="Clipture" height="80" src="./src/assets/favicon.svg">
   <h1>Clipture</h1>
   <p>A modern, minimalist clipboard sharing application that lets you share text snippets instantly.</p>
 
