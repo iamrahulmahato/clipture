@@ -20,20 +20,22 @@
       </div>
 
       <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
-        <textarea
-          id="messageInput"
-          class="w-full h-32 p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-          placeholder="Type or paste your text here..."
-        ></textarea>
-        <button
-          id="submitBtn"
-          class="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          Share
-        </button>
+        <form id="message-form">
+          <textarea
+            id="content"
+            class="w-full h-32 p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+            placeholder="Type or paste your text here..."
+          ></textarea>
+          <button
+            type="submit"
+            class="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Share
+          </button>
+        </form>
       </div>
 
-      <div id="messages" class="space-y-4">
+      <div id="contents" class="space-y-4">
         <!-- Messages will be inserted here -->
       </div>
 
@@ -46,6 +48,14 @@
 
       <div id="error-message" class="fixed top-0 left-0 w-full p-4 bg-red-100 text-red-700 text-center hidden">
         Error: Firebase configuration is missing. Please check your environment variables.
+      </div>
+
+      <div id="toast-copy" class="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg transform translate-y-full opacity-0 transition-all duration-300">
+        Copied to clipboard!
+      </div>
+
+      <div id="toast-delete" class="fixed bottom-4 right-4 bg-red-500 text-white px-4 py-2 rounded shadow-lg transform translate-y-full opacity-0 transition-all duration-300">
+        Message deleted!
       </div>
     </div>
 

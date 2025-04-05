@@ -5,19 +5,9 @@ import autoprefixer from 'autoprefixer';
 export default defineConfig({
   root: './',
   publicDir: 'public',
-  envPrefix: 'VITE_',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    emptyOutDir: true,
-    rollupOptions: {
-      external: ['jquery'],
-      output: {
-        globals: {
-          jquery: '$'
-        }
-      }
-    },
     sourcemap: true,
   },
   css: {
