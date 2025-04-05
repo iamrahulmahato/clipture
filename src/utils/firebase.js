@@ -13,7 +13,6 @@ import {
   setDoc,
   startAfter,
 } from "firebase/firestore";
-import $ from "jquery";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 

@@ -9,6 +9,14 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     emptyOutDir: true,
+    rollupOptions: {
+      external: ['jquery'],
+      output: {
+        globals: {
+          jquery: '$'
+        }
+      }
+    }
   },
   css: {
     postcss: {
